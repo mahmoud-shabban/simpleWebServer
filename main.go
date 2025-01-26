@@ -1,9 +1,10 @@
 package main
 
 import (
-	"data"
 	"fmt"
 	"net/http"
+
+	"github.com/mahmoud-shabban/simpleWebServer/data"
 )
 
 func sayHello(w http.ResponseWriter, r *http.Request) {
