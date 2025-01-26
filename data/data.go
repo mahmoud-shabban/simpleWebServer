@@ -40,13 +40,13 @@ func init() {
 
 	// time.Sleep(10 * time.Second)
 	q := `
-		USE api 
+		USE api;
 		CREATE TABLE IF NOT EXISTS users (
 			id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			username VARCHAR(255) NOT NULL,
 			email VARCHAR(255) NOT NULL,
 			isActive CHAR(1) NOT NULL DEFAULT 'Y'
-			)
+			);
 		`
 	_, err = db.Exec(q)
 	CheckError(err)
