@@ -24,30 +24,30 @@ func init() {
 	CheckError(db.Ping())
 	log.Print("Connection To DB Succeeded!")
 
-	rows, err := db.Query("show databases")
-	defer rows.Close()
-
-	for rows.Next() {
-		var db string
-
-		err = rows.Scan(&db)
-		CheckError(err)
-		log.Printf("Dtabase: %s\n", db)
-	}
-	_, err = db.Exec("CREATE DATABASE IF NOT EXISTS api")
-
-	CheckError(err)
-
 	// time.Sleep(10 * time.Second)
+	// q := `
+	// 	CREATE DATABASE IF NOT EXISTS api;
+	// 	USE api;
+	// 	CREATE TABLE IF NOT EXISTS users (
+	// 		id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	// 		username VARCHAR(255) NOT NULL,
+	// 		email VARCHAR(255) NOT NULL,
+	// 		isActive CHAR(1) NOT NULL DEFAULT 'Y'
+	// 		);
+	// 	`
+
 	q := `
-		USE api;
-		CREATE TABLE IF NOT EXISTS users (
-			id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-			username VARCHAR(255) NOT NULL,
-			email VARCHAR(255) NOT NULL,
-			isActive CHAR(1) NOT NULL DEFAULT 'Y'
-			);
-		`
+	USE api;
+	CREATE TABLE IF NOT EXISTS staff (
+	id     int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	fname  varchar(255) NOT NULL,
+	lname  varchar(255) NOT NULL,
+	title  varchar(255) NOT NULL,
+	isActive CHAR(1) NOT NULL DEFAULT 'Y'
+
+);
+
+	`
 	_, err = db.Exec(q)
 	CheckError(err)
 
