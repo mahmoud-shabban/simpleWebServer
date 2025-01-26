@@ -23,7 +23,6 @@ func init() {
 
 	CheckError(db.Ping())
 	log.Print("Connection To DB Succeeded!")
-	CheckError(err)
 
 	rows, err := db.Query("show databases")
 	defer rows.Close()
@@ -40,7 +39,16 @@ func init() {
 	CheckError(err)
 
 	// time.Sleep(10 * time.Second)
-	_, err = db.Exec("USE api; CREATE TABLE IF NOT EXISTS users (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, username VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, isActive CHAR(1) NOT NULL DEFAULT 'Y')")
+	q := `
+		USE api 
+		CREATE TABLE IF NOT EXISTS users (
+			id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			username VARCHAR(255) NOT NULL,
+			email VARCHAR(255) NOT NULL,
+			isActive CHAR(1) NOT NULL DEFAULT 'Y'
+			)
+		`
+	_, err = db.Exec(q)
 	CheckError(err)
 
 }
