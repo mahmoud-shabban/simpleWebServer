@@ -36,8 +36,8 @@ func init() {
 	// 		);
 	// 	`
 
+	_, _ = db.Exec("USE api")
 	q := `
-	USE api;
 	CREATE TABLE IF NOT EXISTS staff (
 	id     int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	fname  varchar(255) NOT NULL,
@@ -46,7 +46,6 @@ func init() {
 	isActive CHAR(1) NOT NULL DEFAULT 'Y'
 
 );
-
 	`
 	_, err = db.Exec(q)
 	CheckError(err)
