@@ -14,7 +14,7 @@ func sayHello(w http.ResponseWriter, r *http.Request) {
 func main() {
 	mux := http.NewServeMux()
 	servr := http.Server{
-		Addr:    ":8080",
+		Addr:    ":8090",
 		Handler: mux,
 	}
 	mux.HandleFunc("/", sayHello)
@@ -26,7 +26,7 @@ func main() {
 
 func login(w http.ResponseWriter, r *http.Request) {
 	t := template.New("index.html")
-	t, err := t.ParseFiles("./static/index.html")
+	t, err := t.ParseFiles("static/index.html")
 	data.CheckError(err)
 	t.Execute(w, nil)
 }
