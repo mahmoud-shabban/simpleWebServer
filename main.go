@@ -13,15 +13,15 @@ func sayHello(w http.ResponseWriter, r *http.Request) {
 }
 func main() {
 	mux := http.NewServeMux()
-	servr := http.Server{
+	server := http.Server{
 		Addr:    ":8090",
 		Handler: mux,
 	}
 	mux.HandleFunc("/", sayHello)
-	data.CheckError(servr.ListenAndServe())
 
 	mux.HandleFunc("/login/", login)
 
+	data.CheckError(server.ListenAndServe())
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
